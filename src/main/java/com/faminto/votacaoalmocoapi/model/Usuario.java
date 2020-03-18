@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
@@ -27,6 +28,7 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+	@EqualsAndHashCode.Exclude
 	@Column(name = "nome", nullable = false, length = 150)
 	private String nome;
 	
