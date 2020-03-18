@@ -43,7 +43,7 @@ public class VotacaoDiariaBridgeTest {
 	}
 	
 	@Test
-	public void givenUsuarioNuloAndVotacoesNulo_whenPodeVotar_thenReturnTrueParaPrimeiroVotoDoMesmoUsuarioNoDia() {
+	public void givenUsuarioNuloAndVotacoesNulo_whenPodeVotar_thenThrowsIllegalArgumentException() {
 		LocalDate dia = LocalDate.of(2020, Month.MARCH, 2);
 		
 		assertThrows(IllegalArgumentException.class, () -> bridge.podeVotar(dia, null, null));
