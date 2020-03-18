@@ -11,8 +11,6 @@ import com.faminto.votacaoalmocoapi.model.Votacao;
 public class VotacaoDiariaBridge {
 
 	public Boolean podeVotar(Usuario usuario, List<Votacao> votacoes) {
-		
-		
 		return Boolean.FALSE;
 	}
 	
