@@ -34,4 +34,8 @@ public final class RestauranteMocker {
 			.nome(NOME)
 			.build();
 	
+	public static final Restaurante.RestauranteBuilder ENTIDADE_BUILDER = Restaurante.builder()
+			.id(ID)
+			.nome(NOME);
+	
 }

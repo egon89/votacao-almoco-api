@@ -19,4 +19,12 @@ public final class DataHelper {
 		return dia.with(field, SEGUNDA_FEIRA);
 	}
 	
+	public static boolean isMaiorOuIgual(LocalDate d1, LocalDate d2) {
+		return d1.isEqual(d2) || d1.isAfter(d2);
+	}
+	
+	public static boolean isMenorOuIgual(LocalDate d1, LocalDate d2) {
+		return d1.isEqual(d2) || d1.isBefore(d2);
+	}
+	
 }
