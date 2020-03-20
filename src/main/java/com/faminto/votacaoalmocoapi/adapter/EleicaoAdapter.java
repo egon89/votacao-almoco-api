@@ -21,6 +21,7 @@ public class EleicaoAdapter implements InterfaceAdapter<Eleicao, EleicaoDTO> {
 		return Eleicao.builder()
 				.id(dto.getId())
 				.inclusao(dto.getInclusao())
+				.votos(dto.getVotos())
 				.restaurante(restauranteAdapter.toEntity(dto.getRestaurante()))
 				.build();
 	}
@@ -30,6 +31,7 @@ public class EleicaoAdapter implements InterfaceAdapter<Eleicao, EleicaoDTO> {
 		return EleicaoDTO.builder()
 				.id(entity.getId())
 				.inclusao(entity.getInclusao())
+				.votos(entity.getVotos())
 				.restaurante(restauranteAdapter.valueOf(entity.getRestaurante()))
 				.build();
 	}

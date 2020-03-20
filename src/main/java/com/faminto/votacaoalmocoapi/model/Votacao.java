@@ -39,7 +39,7 @@ public class Votacao implements Serializable {
 	@JoinColumn(name = "id_usuario", referencedColumnName = "id")
 	private Usuario usuario;
 	
-	@Column(name = "dt_inclusao", nullable = false)
+	@Column(name = "inclusao", nullable = false)
 	private LocalDateTime inclusao;
 	
 	@PrePersist

@@ -62,4 +62,66 @@ public final class VotacaoMocker {
 		return votacoes;
 	}
 	
+	public static List<Votacao> buildVotacoesDoDia(LocalDate diaVotacao) {
+		LocalDateTime dataHora = LocalDateTime.of(diaVotacao, LocalTime.of(9, 0));
+		// Restaurante 1
+		Votacao votacao = VotacaoMocker.ENTIDADE_BUILDER
+				.restaurante(RestauranteMocker.ENTIDADE)
+				.inclusao(dataHora.plusHours(1))
+				.build();
+		Votacao votacao2 = VotacaoMocker.ENTIDADE_BUILDER
+				.restaurante(RestauranteMocker.ENTIDADE)
+				.inclusao(dataHora.plusMinutes(15))
+				.build();
+		Votacao votacao3 = VotacaoMocker.ENTIDADE_BUILDER
+				.restaurante(RestauranteMocker.ENTIDADE)
+				.inclusao(dataHora.plusMinutes(25))
+				.build();
+		
+		// Restaurante 2
+		Votacao votacao4 = VotacaoMocker.ENTIDADE_BUILDER
+				.restaurante(RestauranteMocker.ENTIDADE_DOIS)
+				.inclusao(dataHora.plusHours(2))
+				.build();
+		Votacao votacao5 = VotacaoMocker.ENTIDADE_BUILDER
+				.restaurante(RestauranteMocker.ENTIDADE_DOIS)
+				.inclusao(dataHora.plusMinutes(45))
+				.build();
+		
+		return VotacaoMocker.buildVotacaoList(votacao, votacao2, votacao3, votacao4, votacao5);
+	}
+	
+	public static List<Votacao> buildVotacoesDoDiaComEmpate(LocalDate diaVotacao) {
+		LocalDateTime dataHora = LocalDateTime.of(diaVotacao, LocalTime.of(9, 0));
+		// Restaurante 1
+		Votacao votacao = VotacaoMocker.ENTIDADE_BUILDER
+				.restaurante(RestauranteMocker.ENTIDADE)
+				.inclusao(dataHora.plusHours(1))
+				.build();
+				
+		// Restaurante 2
+		Votacao votacao2 = VotacaoMocker.ENTIDADE_BUILDER
+				.restaurante(RestauranteMocker.ENTIDADE_DOIS)
+				.inclusao(dataHora.plusHours(2))
+				.build();
+		
+		return VotacaoMocker.buildVotacaoList(votacao, votacao2);
+	}
+	
+	public static List<Votacao> buildVotacoesComDiasDiferentes(LocalDate diaVotacao) {
+		LocalDateTime dataHora = LocalDateTime.of(diaVotacao, LocalTime.of(9, 0));
+		// Restaurante 1
+		Votacao votacao = VotacaoMocker.ENTIDADE_BUILDER
+				.restaurante(RestauranteMocker.ENTIDADE)
+				.inclusao(dataHora.plusHours(1))
+				.build();
+				
+		Votacao votacao2 = VotacaoMocker.ENTIDADE_BUILDER
+				.restaurante(RestauranteMocker.ENTIDADE)
+				.inclusao(dataHora.minusDays(1))
+				.build();
+		
+		return VotacaoMocker.buildVotacaoList(votacao, votacao2);
+	}
+	
 }

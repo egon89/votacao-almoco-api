@@ -5,9 +5,12 @@ import lombok.Getter;
 @Getter
 public enum MessageKey {
 
-	RESTAURANTE_NOT_FOUND("error.restauranteNotfound"),
 	USUARIO_NOT_FOUND("error.usuarioNotfound"),
-	INVALID_PARAMETERS("error.invalidParameters");
+	USUARIO_VOTO_DIARIO("error.usuarioVotoDiario"),
+	RESTAURANTE_NOT_FOUND("error.restauranteNotfound"),
+	RESTAURANTE_ELEITO_SEMANA("error.restauranteEleitoSemana"), 
+	ELEICAO_EMPATE("error.eleicaoEmpate"); 
+	
 	
 	private final String key;
 	

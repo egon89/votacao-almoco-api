@@ -31,8 +31,11 @@ public class Eleicao implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 	
-	@Column(name = "dt_inclusao", nullable = false)
+	@Column(name = "inclusao", nullable = false)
 	private LocalDate inclusao;
+	
+	@Column(name = "votos", nullable = false)
+	private Long votos;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_restaurante", referencedColumnName = "id")
