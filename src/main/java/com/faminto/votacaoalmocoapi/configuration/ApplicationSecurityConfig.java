@@ -1,8 +1,8 @@
 package com.faminto.votacaoalmocoapi.configuration;
 
-import static com.faminto.votacaoalmocoapi.security.Permissao.ADMINISTRADOR;
-import static com.faminto.votacaoalmocoapi.security.Permissao.APURADOR;
-import static com.faminto.votacaoalmocoapi.security.Permissao.FAMINTO;
+import static com.faminto.votacaoalmocoapi.security.Permissao.ROLE_ADMINISTRADOR;
+import static com.faminto.votacaoalmocoapi.security.Permissao.ROLE_APURADOR;
+import static com.faminto.votacaoalmocoapi.security.Permissao.ROLE_FAMINTO;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -26,7 +26,8 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 			.csrf().disable()
 			.authorizeRequests()
-			.antMatchers("/api/**").authenticated()
+			.antMatchers("/api/eleicoes/**").hasAnyAuthority(ROLE_ADMINISTRADOR.name(), ROLE_APURADOR.name())
+			.antMatchers("/api/votacoes/**").hasAnyAuthority(ROLE_ADMINISTRADOR.name(), ROLE_FAMINTO.name())
 			.anyRequest().permitAll()
 			.and()
 			.httpBasic();
@@ -35,15 +36,15 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder authentication) throws Exception {
 		authentication.inMemoryAuthentication()
-				.withUser("admin").password(passwordEncoder().encode("123")).authorities(ADMINISTRADOR.name(), APURADOR.name())
+				.withUser("admin").password(passwordEncoder().encode("123")).authorities(ROLE_ADMINISTRADOR.name(), ROLE_APURADOR.name())
 				.and()
-				.withUser("apurador").password(passwordEncoder().encode("123")).authorities(APURADOR.name())
+				.withUser("apurador").password(passwordEncoder().encode("123")).authorities(ROLE_APURADOR.name())
 				.and()
-				.withUser("faminto_1").password(passwordEncoder().encode("123")).authorities(FAMINTO.name())
+				.withUser("faminto_1").password(passwordEncoder().encode("123")).authorities(ROLE_FAMINTO.name())
 				.and()
-				.withUser("faminto_2").password(passwordEncoder().encode("123")).authorities(FAMINTO.name())
+				.withUser("faminto_2").password(passwordEncoder().encode("123")).authorities(ROLE_FAMINTO.name())
 				.and()
-				.withUser("faminto_3").password(passwordEncoder().encode("123")).authorities(FAMINTO.name());
+				.withUser("faminto_3").password(passwordEncoder().encode("123")).authorities(ROLE_FAMINTO.name());
 	}
 	
 	@Bean

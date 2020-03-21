@@ -31,7 +31,7 @@ public class VotacaoDiariaBridge {
 		periodoVotacaoBridge.validaPeriodoValido(dia, LocalDateTime.now());
 		boolean podeVotar = validaVotacoes(dia, usuario, votacoes);
 		if (!podeVotar) {
-			throw new BusinessException(MessageKey.USUARIO_VOTO_DIARIO, usuario.getNome());
+			throw new BusinessException(MessageKey.USUARIO_VOTO_DIARIO, usuario.getLogin());
 		}
 	}
 

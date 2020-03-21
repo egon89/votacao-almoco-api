@@ -12,7 +12,7 @@ public class UsuarioDTO implements Serializable {
 	private static final long serialVersionUID = 77149326665156766L;
 	
 	private Long id;
-	private String nome;
+	private String login;
 
 	//TODO: Validação e mensagens de validação
 }

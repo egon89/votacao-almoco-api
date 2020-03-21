@@ -33,6 +33,7 @@ public class EleicaoService {
 				.orElseThrow(() -> new BusinessException(MessageKey.RESTAURANTE_NOT_FOUND, id));
 		Eleicao eleicao = Eleicao.builder()
 			.restaurante(restaurante)
+			.votos(3L)
 			.build();
 		repository.save(eleicao);
 	}

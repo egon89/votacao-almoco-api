@@ -12,7 +12,7 @@ public class UsuarioAdapter implements InterfaceAdapter<Usuario, UsuarioDTO> {
 	public Usuario toEntity(UsuarioDTO dto) {
 		return Usuario.builder()
 				.id(dto.getId())
-				.nome(dto.getNome())
+				.login(dto.getLogin())
 				.build();
 	}
 
@@ -20,7 +20,7 @@ public class UsuarioAdapter implements InterfaceAdapter<Usuario, UsuarioDTO> {
 	public UsuarioDTO valueOf(Usuario entity) {
 		return UsuarioDTO.builder()
 				.id(entity.getId())
-				.nome(entity.getNome())
+				.login(entity.getLogin())
 				.build();
 	}
 

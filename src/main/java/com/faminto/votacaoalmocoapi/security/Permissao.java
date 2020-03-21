@@ -1,7 +1,7 @@
 package com.faminto.votacaoalmocoapi.security;
 
 public enum Permissao {
-	ADMINISTRADOR,
-	FAMINTO,
-	APURADOR;
+	ROLE_ADMINISTRADOR,
+	ROLE_FAMINTO,
+	ROLE_APURADOR;
 }
