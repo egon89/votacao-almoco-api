@@ -10,11 +10,12 @@ import org.springframework.stereotype.Component;
 import com.faminto.votacaoalmocoapi.bridge.PeriodoVotacaoBridge;
 import com.faminto.votacaoalmocoapi.bridge.RestauranteEleitoSemanaBridge;
 import com.faminto.votacaoalmocoapi.bridge.VotacaoDiariaBridge;
+import com.faminto.votacaoalmocoapi.dto.validation.VotoDTO;
 import com.faminto.votacaoalmocoapi.model.Usuario;
 import com.faminto.votacaoalmocoapi.model.Votacao;
 
 @Component
-public class VotacaoValidator {
+public class VotacaoValidator implements IValidator<VotoDTO> {
 
 	private VotacaoDiariaBridge votacaoDiariaBridge;
 	private PeriodoVotacaoBridge periodoVotacaoBridge;
@@ -33,5 +34,13 @@ public class VotacaoValidator {
 		periodoVotacaoBridge.validaPeriodoValido(dia, LocalDateTime.now());
 		// TODO restaurante semanal
 	}
+
+	@Override
+	public void validar(VotoDTO validator) {
+		votacaoDiariaBridge.podeVotar(validator.getDia(), validator.getUsuario(), validator.getVotacoes());
+		periodoVotacaoBridge.validaPeriodoValido(validator.getDia(), LocalDateTime.now());
+		restauranteEleitoSemanaBridge.podeEleger(validator.getRestaurante(), validator.getDia(), validator.getEleicoes());
+	}
+
 	
 }

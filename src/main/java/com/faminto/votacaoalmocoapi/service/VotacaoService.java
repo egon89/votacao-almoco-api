@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.faminto.votacaoalmocoapi.dto.validation.VotoDTO;
 import com.faminto.votacaoalmocoapi.exception.BusinessException;
 import com.faminto.votacaoalmocoapi.message.MessageKey;
+import com.faminto.votacaoalmocoapi.model.Eleicao;
 import com.faminto.votacaoalmocoapi.model.Restaurante;
 import com.faminto.votacaoalmocoapi.model.Usuario;
 import com.faminto.votacaoalmocoapi.model.Votacao;
@@ -22,14 +24,16 @@ public class VotacaoService {
 	private VotacaoRepository repository;
 	private UsuarioService usuarioService;
 	private RestauranteService restauranteService;
+	private EleicaoService eleicaoService;
 	private VotacaoValidator validator;
 
 	@Autowired
 	public VotacaoService(VotacaoRepository repository, UsuarioService usuarioService,
-			RestauranteService restauranteService, VotacaoValidator validator) {
+			RestauranteService restauranteService, EleicaoService eleicaoService, VotacaoValidator validator) {
 		this.repository = repository;
 		this.usuarioService = usuarioService;
 		this.restauranteService = restauranteService;
+		this.eleicaoService = eleicaoService;
 		this.validator = validator;
 	}
 
@@ -51,12 +55,15 @@ public class VotacaoService {
 	public Votacao votar(Long idRestaurante) {
 		Usuario usuario = usuarioService.getUsuarioAutenticado();
 		List<Votacao> votacoesDoUsuario = findByUsuarioId(usuario.getId());
-		validator.validate(LocalDate.now(), usuario, votacoesDoUsuario);
-		Votacao votacao = Votacao.builder()
-			.inclusao(LocalDateTime.now())
-			.restaurante(restauranteService.getRestauranteById(idRestaurante))
-			.usuario(usuario)
-			.build();
+		Restaurante restaurante = restauranteService.getRestauranteById(idRestaurante);
+		List<Eleicao> eleicoes = eleicaoService.findAll();
+
+		System.out.println(eleicoes);
+		
+		validator.validar(VotoDTO.builder().dia(LocalDate.now()).usuario(usuario).restaurante(restaurante)
+				.votacoes(votacoesDoUsuario).eleicoes(eleicoes).build());
+		Votacao votacao = Votacao.builder().inclusao(LocalDateTime.now()).restaurante(restaurante).usuario(usuario)
+				.build();
 		
 		return salvar(votacao);
 	}

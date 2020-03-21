@@ -1,5 +1,7 @@
 package com.faminto.votacaoalmocoapi.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,11 +24,6 @@ public class EleicaoService {
 		this.restauranteService = restauranteService;
 	}
 	
-	@Transactional
-	public Eleicao salvar(Eleicao eleicao) {
-		return repository.save(eleicao);
-	}
-
 	public void salvarNovaEleicao() {
 		Long id = 2L;
 		Restaurante restaurante = restauranteService.findById(id)
@@ -36,6 +33,16 @@ public class EleicaoService {
 			.votos(3L)
 			.build();
 		repository.save(eleicao);
+	}
+	
+	@Transactional(readOnly = true)
+	public List<Eleicao> findAll() {
+		return repository.findAll();
+	}
+	
+	@Transactional
+	public Eleicao salvar(Eleicao eleicao) {
+		return repository.save(eleicao);
 	}
 	
 }

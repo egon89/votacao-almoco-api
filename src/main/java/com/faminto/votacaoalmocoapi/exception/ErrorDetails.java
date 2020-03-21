@@ -1,26 +1,18 @@
 package com.faminto.votacaoalmocoapi.exception;
 
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDateTime;
 
 import lombok.Data;
 
 @Data
 public class ErrorDetails {
 
-	private final Date date;
-	private final String message;
-	private final List<String> details;
+	private final LocalDateTime data;
+	private final String mensagem;
 
-	public ErrorDetails(String message, List<String> details) {
-		this.date = new Date();
-		this.message = message;
-		this.details = details;
-	}
-	
 	public ErrorDetails(String message) {
-		this(message, Collections.emptyList());
+		this.data = LocalDateTime.now();
+		this.mensagem = message;
 	}
 	
 }

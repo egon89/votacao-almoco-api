@@ -13,7 +13,7 @@ import com.faminto.votacaoalmocoapi.message.MessageKey;
 public class PeriodoVotacaoBridge {
 
 	public static final LocalTime VOTACAO_HORARIO_LIMITE = LocalTime.of(11, 25);
-	
+
 	public boolean isPeriodoValido(LocalDate diaVotacao, LocalDateTime momentoVoto) {
 		return momentoVoto.toLocalDate().isEqual(diaVotacao) && !momentoVoto.toLocalTime().isAfter(VOTACAO_HORARIO_LIMITE);
 	}
@@ -22,6 +22,7 @@ public class PeriodoVotacaoBridge {
 		if (!isPeriodoValido(diaVotacao, momentoVoto)) {
 			throw new BusinessException(MessageKey.VOTO_PERIODO_INVALIDO);
 		}
+		//TODO pegar pela property
 	}
 	
 }
