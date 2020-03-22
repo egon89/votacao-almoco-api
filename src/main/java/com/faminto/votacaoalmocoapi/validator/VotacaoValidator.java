@@ -39,7 +39,7 @@ public class VotacaoValidator implements IValidator<VotoDTO> {
 	public void validar(VotoDTO validator) {
 		votacaoDiariaBridge.podeVotar(validator.getDia(), validator.getUsuario(), validator.getVotacoes());
 		periodoVotacaoBridge.validaPeriodoValido(validator.getDia(), LocalDateTime.now());
-		restauranteEleitoSemanaBridge.podeEleger(validator.getRestaurante(), validator.getDia(), validator.getEleicoes());
+		restauranteEleitoSemanaBridge.podeEleger(validator.getRestaurante(), validator.getDia());
 	}
 
 	

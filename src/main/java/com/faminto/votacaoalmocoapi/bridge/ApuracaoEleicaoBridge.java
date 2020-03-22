@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.faminto.votacaoalmocoapi.exception.BusinessException;
@@ -16,15 +17,24 @@ import com.faminto.votacaoalmocoapi.message.MessageKey;
 import com.faminto.votacaoalmocoapi.model.Eleicao;
 import com.faminto.votacaoalmocoapi.model.Restaurante;
 import com.faminto.votacaoalmocoapi.model.Votacao;
+import com.faminto.votacaoalmocoapi.repository.VotacaoRepository;
 
 @Component
 public class ApuracaoEleicaoBridge {
+	
+	private VotacaoRepository votacaoRepository;
+	
+	@Autowired
+	public ApuracaoEleicaoBridge(VotacaoRepository votacaoRepository) {
+		super();
+		this.votacaoRepository = votacaoRepository;
+	}
 
-	public Optional<Eleicao> apurar(LocalDate dia, List<Votacao> votacoes) {
-		if (validar(dia, votacoes)) {
+	public Optional<Eleicao> apurar(LocalDate dia) {
+		if (isNull(dia)) {
 			throw new IllegalArgumentException();
 		}
-
+		List<Votacao> votacoes = votacaoRepository.findAll();
 		Map<Restaurante, Long> apuracao = mapearVotacao(dia, votacoes);
 		Optional<Long> maiorVotoOpt = apurarMaiorVoto(apuracao);
 		if (maiorVotoOpt.isPresent()) {
@@ -55,10 +65,6 @@ public class ApuracaoEleicaoBridge {
 	private Optional<Eleicao> getEleicaoVencedora(Map<Restaurante, Long> apuracao, Long maiorVoto) {
 		return apuracao.entrySet().stream().filter(ap -> ap.getValue().equals(maiorVoto))
 				.map(ap -> Eleicao.builder().restaurante(ap.getKey()).votos(maiorVoto).build()).findFirst();
-	}
-
-	private boolean validar(LocalDate dia, List<Votacao> votacoes) {
-		return isNull(dia) || isNull(votacoes);
 	}
 
 }

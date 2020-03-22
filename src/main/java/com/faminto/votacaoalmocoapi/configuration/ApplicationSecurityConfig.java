@@ -44,7 +44,21 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 				.withUser("faminto_2").password(passwordEncoder().encode("123")).authorities(ROLE_FAMINTO.name())
 				.and()
-				.withUser("faminto_3").password(passwordEncoder().encode("123")).authorities(ROLE_FAMINTO.name());
+				.withUser("faminto_3").password(passwordEncoder().encode("123")).authorities(ROLE_FAMINTO.name())
+				.and()
+				.withUser("faminto_4").password(passwordEncoder().encode("123")).authorities(ROLE_FAMINTO.name())
+				.and()
+				.withUser("faminto_5").password(passwordEncoder().encode("123")).authorities(ROLE_FAMINTO.name())
+				.and()
+				.withUser("faminto_6").password(passwordEncoder().encode("123")).authorities(ROLE_FAMINTO.name())
+				.and()
+				.withUser("faminto_7").password(passwordEncoder().encode("123")).authorities(ROLE_FAMINTO.name())
+				.and()
+				.withUser("faminto_8").password(passwordEncoder().encode("123")).authorities(ROLE_FAMINTO.name())
+				.and()
+				.withUser("faminto_9").password(passwordEncoder().encode("123")).authorities(ROLE_FAMINTO.name())
+				.and()
+				.withUser("faminto_10").password(passwordEncoder().encode("123")).authorities(ROLE_FAMINTO.name());
 	}
 	
 	@Bean

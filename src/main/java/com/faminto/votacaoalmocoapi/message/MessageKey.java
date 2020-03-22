@@ -11,6 +11,8 @@ public enum MessageKey {
 	RESTAURANTE_NOT_FOUND("error.restauranteNotfound"),
 	RESTAURANTE_ELEITO_SEMANA("error.restauranteEleitoSemana"), 
 	ELEICAO_EMPATE("error.eleicaoEmpate"), 
+	ELEICAO_NAO_PROCESSADA("error.eleicaoNaoProcessada"),
+	ELEICAO_REALIZADA("error.eleicaoRealizada"),
 	VOTO_PERIODO_INVALIDO("error.periodoInvalido"); 
 	
 	private final String key;
