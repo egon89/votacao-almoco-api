@@ -1,7 +1,7 @@
 package com.faminto.votacaoalmocoapi.service;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,8 +36,9 @@ public class RestauranteService {
 		return repository.findById(id);
 	}
 	
-	public void salvarNovoRestaurante() {
-		salvar(Restaurante.builder().nome("Restaurante "+ new Random().nextInt(100)).build());
+	@Transactional(readOnly = true)
+	public List<Restaurante> findAll() {
+		return repository.findAll();
 	}
 	
 }

@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.faminto.votacaoalmocoapi.dto.validation.VotoDTO;
-import com.faminto.votacaoalmocoapi.exception.BusinessException;
-import com.faminto.votacaoalmocoapi.message.MessageKey;
 import com.faminto.votacaoalmocoapi.model.Restaurante;
 import com.faminto.votacaoalmocoapi.model.Usuario;
 import com.faminto.votacaoalmocoapi.model.Votacao;
@@ -33,21 +31,6 @@ public class VotacaoService {
 		this.restauranteService = restauranteService;
 		this.validator = validator;
 	}
-
-	public void salvarNovoVoto() {
-		Long usuarioId = 5L;
-		Long restauranteId = 2L;
-		Usuario usuario = usuarioService.findById(usuarioId)
-				.orElseThrow(() -> new BusinessException(MessageKey.USUARIO_NOT_FOUND, usuarioId));
-		Restaurante restaurante = restauranteService.findById(restauranteId)
-				.orElseThrow(() -> new BusinessException(MessageKey.RESTAURANTE_NOT_FOUND, restauranteId));
-		Votacao votacao = Votacao.builder()
-			.usuario(usuario)
-			.restaurante(restaurante)
-			.build();
-		repository.save(votacao);
-	}
-
 
 	public Votacao votar(Long idRestaurante) {
 		Usuario usuario = usuarioService.getUsuarioAutenticado();

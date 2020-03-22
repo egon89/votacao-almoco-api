@@ -1,7 +1,7 @@
 package com.faminto.votacaoalmocoapi.service;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -25,29 +25,20 @@ public class UsuarioService {
 		this.repository = repository;
 		this.autenticacao = autenticacao;
 	}
-	
-	public void salvarNovoUsuario() {
-		salvar(Usuario.builder().login("Usuário "+ new Random().nextInt(100)).build());
-	}
 
 	public Usuario getUsuarioAutenticado() {
 		String login = autenticacao.getLogin();
 		return findByLogin(login).orElseThrow(() -> new BusinessException(MessageKey.USUARIO_LOGIN_NOT_FOUND, login));
 	}
-
-	@Transactional
-	public Usuario salvar(Usuario usuario) {
-		return repository.save(usuario);
-	}
-	
-	@Transactional(readOnly = true)
-	public Optional<Usuario> findById(Long id) {
-		return repository.findById(id);
-	}
 	
 	@Transactional(readOnly = true)
 	public Optional<Usuario> findByLogin(String login) {
-		return repository.findOne(Example.of( Usuario.builder().login(login).build()));
+		return repository.findOne(Example.of(Usuario.builder().login(login).build()));
+	}
+	
+	@Transactional(readOnly = true)
+	public List<Usuario> findAll() {
+		return repository.findAll();
 	}
 	
 }
