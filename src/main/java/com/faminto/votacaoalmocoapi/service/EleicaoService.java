@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,7 +40,7 @@ public class EleicaoService {
 	
 	@Transactional(readOnly = true)
 	public List<Eleicao> findAll() {
-		return repository.findAll();
+		return repository.findAll(Sort.by(Sort.Direction.DESC, "inclusao"));
 	}
 	
 	@Transactional(readOnly = true)

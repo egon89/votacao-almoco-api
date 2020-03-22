@@ -17,6 +17,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Sort;
 
 import com.faminto.votacaoalmocoapi.bridge.ApuracaoEleicaoBridge;
 import com.faminto.votacaoalmocoapi.exception.BusinessException;
@@ -63,7 +64,7 @@ public class EleicaoServiceTest {
 	public void whenFindAll_thenChamaRepository() {
 		service.findAll();
 		
-		verify(repository, atLeastOnce()).findAll();
+		verify(repository, atLeastOnce()).findAll(any(Sort.class));
 	}
 	
 	@Test
