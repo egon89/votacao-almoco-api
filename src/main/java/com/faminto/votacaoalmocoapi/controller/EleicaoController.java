@@ -16,6 +16,8 @@ import com.faminto.votacaoalmocoapi.dto.EleicaoDTO;
 import com.faminto.votacaoalmocoapi.model.Eleicao;
 import com.faminto.votacaoalmocoapi.service.EleicaoService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/api/eleicoes")
 public class EleicaoController {
@@ -30,6 +32,7 @@ public class EleicaoController {
 	}
 	
 	@GetMapping
+	@ApiOperation(value = "Retorna as eleições")
 	public ResponseEntity<List<EleicaoDTO>> eleicoes() {
 		List<EleicaoDTO> eleicoes = service.findAll().stream()
 				.map(adapter::valueOf).collect(Collectors.toList());
@@ -38,6 +41,7 @@ public class EleicaoController {
 	}
 
 	@PostMapping("/apurar")
+	@ApiOperation(value = "Apura o restaurante com o maior número de votos do dia")
 	public ResponseEntity<EleicaoDTO> apurar() {
 		Eleicao eleicao = service.apurar();
 		

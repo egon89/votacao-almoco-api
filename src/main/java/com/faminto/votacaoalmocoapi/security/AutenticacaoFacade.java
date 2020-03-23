@@ -17,5 +17,4 @@ public class AutenticacaoFacade implements IAutenticacaoFacade {
 		return SecurityContextHolder.getContext().getAuthentication().getName();
 	}
 	
-	
 }

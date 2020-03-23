@@ -14,5 +14,4 @@ public class UsuarioDTO implements Serializable {
 	private Long id;
 	private String login;
 
-	//TODO: Validação e mensagens de validação
 }

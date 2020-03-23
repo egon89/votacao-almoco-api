@@ -14,6 +14,4 @@ public class RestauranteDTO implements Serializable {
 	private Long id;
 	private String nome;
 	
-	//TODO: Validação e mensagens de validação
-	
 }

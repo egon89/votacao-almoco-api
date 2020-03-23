@@ -13,6 +13,8 @@ import com.faminto.votacaoalmocoapi.adapter.UsuarioAdapter;
 import com.faminto.votacaoalmocoapi.dto.UsuarioDTO;
 import com.faminto.votacaoalmocoapi.service.UsuarioService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/api/usuarios")
 public class UsuarioController {
@@ -27,6 +29,7 @@ public class UsuarioController {
 	}
 	
 	@GetMapping
+	@ApiOperation(value = "Retorna todos os usuários")
 	public ResponseEntity<List<UsuarioDTO>> usuarios() {
 		List<UsuarioDTO> restaurantes = service.findAll().stream().map(adapter::valueOf).collect(Collectors.toList());
 		return ResponseEntity.ok(restaurantes);

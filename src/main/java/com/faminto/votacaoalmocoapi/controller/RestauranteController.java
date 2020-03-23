@@ -13,6 +13,8 @@ import com.faminto.votacaoalmocoapi.adapter.RestauranteAdapter;
 import com.faminto.votacaoalmocoapi.dto.RestauranteDTO;
 import com.faminto.votacaoalmocoapi.service.RestauranteService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/api/restaurantes")
 public class RestauranteController {
@@ -27,6 +29,7 @@ public class RestauranteController {
 	}
 
 	@GetMapping
+	@ApiOperation(value = "Retorna todos os restaurantes")
 	public ResponseEntity<List<RestauranteDTO>> restaurantes() {
 		List<RestauranteDTO> restaurantes = service.findAll().stream().map(adapter::valueOf)
 				.collect(Collectors.toList());

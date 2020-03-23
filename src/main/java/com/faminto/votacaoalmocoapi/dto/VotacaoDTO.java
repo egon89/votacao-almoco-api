@@ -16,7 +16,5 @@ public class VotacaoDTO implements Serializable {
 	private RestauranteDTO restaurante;
 	private UsuarioDTO usuario;
 	private LocalDateTime inclusao;
-	
-	//TODO: Validação e mensagens de validação
 
 }

@@ -17,6 +17,4 @@ public class EleicaoDTO implements Serializable {
 	private LocalDate inclusao;
 	private Long votos;
 	
-	//TODO: Validação e mensagens de validação
-	
 }
